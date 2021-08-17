@@ -1,0 +1,38 @@
+body {
+  background-color: #2a2a2a;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  color: #cfd8dc;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-content: flex-center;
+  flex-direction: column;
+}
+
+.smcontent {
+  display: flex;
+  justify-content: space-around;
+  align-content: flex-center;
+  margin-top: 15px;
+}
+
+.avatar {
+  border-radius: 250px;
+  box-sizing: border-box;
+  border: 8px solid #cfd8dc;
+  height: 250px;
+  width: 250px;
+}
+
+.smicon {
+  width: 35px;
+  height: 35px;
+}
