@@ -30,9 +30,6 @@ resource "aws_cloudfront_distribution" "mjw_sh" {
     cache_policy_id  = "658327ea-f89d-4fab-a63d-7e88639e58f6"
 
     viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 3600
-    max_ttl                = 86400
   }
 
   custom_error_response {
