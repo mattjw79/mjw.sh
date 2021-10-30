@@ -1,0 +1,28 @@
+name: Deploy
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: us-east-1
+
+jobs:
+  sync-s3:
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          bucket=dev.mjw.sh
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+            bucket=mjw.sh
+          fi
+          cd site || exit 1
+          echo "Syncing site to ${bucket}"
+          aws s3 sync ./ s3://${bucket}/ --acl public-read
