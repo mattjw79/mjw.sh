@@ -53,3 +53,33 @@ resource "aws_iam_user_group_membership" "mwhitney" {
   user   = aws_iam_user.mwhitney.name
   groups = [aws_iam_group.admin.name]
 }
+
+data "aws_iam_policy_document" "deploy" {
+  statement {
+    actions = [
+      "s3:PutObject",
+      "s3:PutObjectAcl"
+    ]
+    resources = [
+      "${aws_s3_bucket.dev_mjw_sh.arn}/*",
+      "${aws_s3_bucket.mjw_sh.arn}/*"
+    ]
+  }
+}
+
+resource "aws_iam_policy" "deploy" {
+  name   = "Deploy"
+  path   = "/"
+  policy = data.aws_iam_policy_document.deploy.json
+}
+
+resource "aws_iam_user" "deploy" {
+  name = "deploy"
+  path = "/"
+}
+
+resource "aws_iam_policy_attachment" "deploy" {
+  name       = "deploy"
+  policy_arn = aws_iam_policy.deploy.arn
+  users      = [aws_iam_user.deploy.name]
+}
