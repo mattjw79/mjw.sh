@@ -9,5 +9,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-        cd site || exit 1
-        aws s3 sync ./ s3://dev.mjw.sh/ --acl public-read
+          cd site || exit 1
+          aws s3 sync ./ s3://dev.mjw.sh/ --acl public-read
