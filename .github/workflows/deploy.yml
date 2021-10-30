@@ -13,12 +13,13 @@ env:
   AWS_REGION: us-east-1
 
 jobs:
-  sync-s3:
+  deploy:
     if: github.ref != 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
+      - name: sync-s3
+        run: |
           bucket=dev.mjw.sh
           if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
             bucket=mjw.sh
