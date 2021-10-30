@@ -61,7 +61,8 @@ data "aws_iam_policy_document" "deploy" {
       "s3:PutObjectAcl"
     ]
     resources = [
-      "${aws_s3_bucket.dev_mjw_sh.arn}/*"
+      "${aws_s3_bucket.dev_mjw_sh.arn}/*",
+      "${aws_s3_bucket.mjw_sh.arn}/*"
     ]
   }
 }
@@ -78,7 +79,7 @@ resource "aws_iam_user" "deploy" {
 }
 
 resource "aws_iam_policy_attachment" "deploy" {
-  name = "deploy"
+  name       = "deploy"
   policy_arn = aws_iam_policy.deploy.arn
-  users = [aws_iam_user.deploy.name]
+  users      = [aws_iam_user.deploy.name]
 }
