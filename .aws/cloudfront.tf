@@ -36,14 +36,14 @@ resource "aws_cloudfront_distribution" "mjw_sh" {
     error_caching_min_ttl = 10
     error_code            = 403
     response_code         = 403
-    response_page_path    = "/403.html"
+    response_page_path    = "/error.html"
   }
 
   custom_error_response {
     error_caching_min_ttl = 10
     error_code            = 404
     response_code         = 404
-    response_page_path    = "/404.html"
+    response_page_path    = "/error.html"
   }
 
   restrictions {
@@ -100,14 +100,14 @@ resource "aws_cloudfront_distribution" "dev_mjw_sh" {
     error_caching_min_ttl = 10
     error_code            = 403
     response_code         = 403
-    response_page_path    = "/403.html"
+    response_page_path    = "/error.html"
   }
 
   custom_error_response {
     error_caching_min_ttl = 10
     error_code            = 404
     response_code         = 404
-    response_page_path    = "/404.html"
+    response_page_path    = "/error.html"
   }
 
   restrictions {

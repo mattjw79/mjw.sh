@@ -57,8 +57,15 @@ resource "aws_iam_user_group_membership" "mwhitney" {
 data "aws_iam_policy_document" "deploy" {
   statement {
     actions = [
+      "cloudfront:ListDistributions",
+      "cloudfront:CreateInvalidation",
+    ]
+    resources = ["*"]
+  }
+  statement {
+    actions = [
       "s3:PutObject",
-      "s3:PutObjectAcl"
+      "s3:PutObjectAcl",
     ]
     resources = [
       "${aws_s3_bucket.dev_mjw_sh.arn}/*",
