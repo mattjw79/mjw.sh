@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-dark: #1a1a1a;
+  --color-mid: #2a2a2a;
+  --color-mid-highlight: #4a4a4a;
+  --color-light: #cfd8dc;
+}
+
+body {
+  color: var(--color-light);
+  background: var(--color-mid);
+}
+
+.ingredients h2, .instructions h2, .reference h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  }
+
+.ingredients li {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left: 1em;
+}
+
+.instructions li {
+  list-style-type: decimal;
+  list-style-position: outside;
+  margin-left: 1em;
+}

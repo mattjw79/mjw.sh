@@ -1,0 +1,20 @@
+{
+  "name": "mjw.sh",
+  "version": "1.0.0",
+  "repository": "git@github.com:mattjw79/mjw.sh.git",
+  "author": "Matt Whitney",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "web",
+    "sanity"
+  ],
+  "scripts": {
+    "dev": "concurrently 'yarn dev:web' 'yarn dev:sanity'",
+    "dev:web": "yarn workspace web run dev",
+    "dev:sanity": "yarn workspace sanity run dev"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
