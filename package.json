@@ -7,12 +7,12 @@
   "private": true,
   "workspaces": [
     "web",
-    "sanity"
+    "studio"
   ],
   "scripts": {
     "dev": "concurrently 'yarn dev:web' 'yarn dev:sanity'",
     "dev:web": "yarn workspace web run dev",
-    "dev:sanity": "yarn workspace sanity run dev"
+    "dev:sanity": "yarn workspace studio run dev"
   },
   "dependencies": {
     "concurrently": "^8.2.0"
