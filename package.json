@@ -10,9 +10,9 @@
     "studio"
   ],
   "scripts": {
-    "dev": "concurrently 'yarn dev:web' 'yarn dev:sanity'",
+    "dev": "concurrently 'yarn dev:web' 'yarn dev:studio'",
     "dev:web": "yarn workspace web run dev",
-    "dev:sanity": "yarn workspace studio run dev"
+    "dev:studio": "yarn workspace studio run dev"
   },
   "dependencies": {
     "concurrently": "^8.2.0"

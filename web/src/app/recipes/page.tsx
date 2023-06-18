@@ -13,6 +13,13 @@ type Recipe = {
     url: string;
     aspectRatio: number;
   };
+  hotspot?: {
+    __type?: string;
+    height: number;
+    width: number;
+    x: number;
+    y: number;
+  };
 };
 
 async function getData(): Promise<Recipe[]> {
@@ -24,7 +31,8 @@ async function getData(): Promise<Recipe[]> {
             "image": image.asset->{
                 url,
                 "aspectRatio": metadata.dimensions.aspectRatio
-            }
+            },
+            "hotspot": image.hotspot
         } | order(_createdAt desc)`,
   );
 }
@@ -40,6 +48,7 @@ export default async function Recipies() {
             slug={recipe.slug.current}
             title={recipe.title}
             image={recipe.image}
+            hotspot={recipe.hotspot}
           />
         ))}
       </div>

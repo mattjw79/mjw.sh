@@ -7,8 +7,24 @@ const RecipeCard = (props: {
   slug: string;
   title: string;
   image: { url: string; aspectRatio: number };
+  hotspot?: { height: number; width: number; x: number; y: number };
 }) => {
-  const width = Math.floor(IMAGE_HEIGHT * props.image.aspectRatio);
+  let height = IMAGE_HEIGHT;
+  let width = Math.floor(IMAGE_HEIGHT * props.image.aspectRatio);
+  const url = new URL(props.image.url);
+  url.searchParams.set('fit', 'crop');
+  url.searchParams.set('crop', 'focalpoint');
+  if (props.hotspot) {
+    url.searchParams.set('fp-x', props.hotspot.x.toString());
+    url.searchParams.set('fp-y', props.hotspot.y.toString());
+    url.searchParams.set('h', '250');
+    url.searchParams.set('w', '250');
+
+    width = 250;
+    height = 250;
+  } else {
+    url.searchParams.set('h', IMAGE_HEIGHT.toString());
+  }
 
   return (
     <div className="p-5">
@@ -20,13 +36,13 @@ const RecipeCard = (props: {
             </p>
             <Image
               className="rounded-md"
-              src={`${props.image.url}?h=${IMAGE_HEIGHT}`}
+              src={url.toString()}
               alt=""
               height={0}
               width={0}
               sizes="100vw"
               style={{
-                height: IMAGE_HEIGHT,
+                height,
                 width,
               }}
             />
