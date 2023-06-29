@@ -1,5 +1,6 @@
 import { createSanityClient } from '../../utils/sanity';
 import RecipeCard from './RecipeCard';
+import { headers } from 'next/headers';
 
 const client = createSanityClient();
 
@@ -22,8 +23,8 @@ type Recipe = {
   };
 };
 
-async function getData(): Promise<Recipe[]> {
-  return client.fetch(
+export default async function Recipes() {
+  const data: Recipe[] = await client.fetch(
     `*[_type == "recipe"]{
             _createdAt,
             title,
@@ -35,10 +36,9 @@ async function getData(): Promise<Recipe[]> {
             "hotspot": image.hotspot
         } | order(_createdAt desc)`,
   );
-}
 
-export default async function Recipies() {
-  const data = await getData();
+  headers();
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="flex flex-wrap justify-center m-auto">
